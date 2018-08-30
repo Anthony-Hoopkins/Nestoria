@@ -1,0 +1,23 @@
+body,h1,h2,h3,h4,h5,h6 {
+  padding: 0;
+  margin: 0;
+}
+
+body{
+  font-family: sans-serif;
+}
+
+.search-mask__label:before {
+  color: #545454;
+  content: ' \00007C';
+  padding-right: 5px;
+}
+
+.search-mask__label {
+  position: absolute;
+  padding: 8px 0;
+  cursor: pointer;
+  right: 10px;
+  top: 0;
+  color: #0073d9;
+}

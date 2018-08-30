@@ -1,0 +1,38 @@
+<header>
+
+  <div class="logo"><a href="#"><img class="logo-img" src="src/assets/img/logo_v1.svg" alt="Logo"></a> </div>
+
+  <div class="header-panel">
+
+    <div class="filters-alert header-panel-elment">
+      <div class="filters-bnt btn active-bnt"> Filters</div>
+      <div class="alerts-btn btn"> Alerts</div>
+    </div>
+
+    <div class="search-string header-panel-elment">
+
+      <span class="search-icon"></span>
+
+      <form class="search-form" [formGroup]="searchForm" novalidate (ngSubmit)="submit()">
+        <input formControlName="searchString" class="search-string-input" type="text" placeholder="Enter City"> <!--(change)="drawLine()"-->
+        <button class="btnn" (click)="addItem()" [disabled]="searchForm.invalid"> GO </button>
+      </form>
+
+      <span class="search-mask__label"> | Change</span>
+
+    </div>
+
+    <div class="list-map header-panel-elment">
+      <div class="list-btn btn active-bnt">List</div>
+      <div class="map-btn btn">Map</div>
+    </div>
+
+  </div>
+
+</header>
+
+<main>
+  <app-sidebar></app-sidebar>  <!--    ??? Возможно тут лучше сделать через ngIf 2 компонента-->
+
+  <app-main-display  > </app-main-display>  <!--[itemsFlat]="itemsFlat"-->
+</main>

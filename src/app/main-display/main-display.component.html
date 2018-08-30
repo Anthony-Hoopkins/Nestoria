@@ -1,0 +1,87 @@
+<section *ngIf="trueResponse">
+
+  <div  class="flat-card" *ngFor="let item of itemsFlat">
+
+    <div class="flat-card-img">
+      <img class="flat-card-img-img" src="{{item.img_url}}" alt="{{item.title}}" title="{{item.title}}">
+    </div>
+
+    <div class="flat-card-description">
+      <div class="description-title">
+        {{item.title}}
+      </div>
+
+      <div class="description-keywords">
+        {{item.keywords}}
+      </div>
+
+      <div class="description-descr">
+        {{item.summary}}
+      </div>
+
+      <div class="description-seen">
+        <span class="description-seen--active"> {{item.updated_in_days_formatted}} </span>
+        <span> on </span>
+        <span>  {{item.datasource_name | uppercase}} </span>
+      </div>
+    </div>
+
+    <div class="flat-card-price-column">
+      <div class="price-string">
+        {{item.price_formatted}}
+      </div>
+
+      <div class="home-valuation">
+        Home Valuation
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<div *ngIf="falseResponse" class="not-found">
+
+  <h1> Drat! We can't find any properties</h1>
+  <p> We will inform you as soon as we have new properties with these features </p>
+
+</div>
+
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<br>
+<table class="table ">
+  <thead>
+  <tr>
+    <th>Модель</th>
+    <th>Цена</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of items">
+    <td>{{item.name}}</td>
+    <td>{{item.price | currency}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<app-counter1></app-counter1>
