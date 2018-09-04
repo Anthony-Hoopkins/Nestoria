@@ -1,65 +1,95 @@
-import { Injectable } from '@angular/core';
-import {Phone} from './phone';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs/internal/Observable";
-import {map} from "rxjs/operators";
+import {catchError, map} from "rxjs/operators";
+import {throwError} from "rxjs/internal/observable/throwError";
+
+import {Phone} from './phone';
+
+// import {Observable} from "rxjs/internal/Observable";
 
 @Injectable()
 export class SearchService {
 
-  private counter: number = 0;
+  // private counter: number = 0;
 
-  url:string = 'https://api.nestoria.co.uk/api?encoding=json&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name=durham&number_of_results=5';
-  resp;
-  trueResponse = true;
   constructor(private http: HttpClient){ }
 
-  private dataRespond: any [] = [];
+  numberPage = 3;
 
-  addRegionOnRequestUrl(placeName: string){
-    this.url = `https://api.nestoria.co.uk/api?encoding=json&pretty=1&action=search_listings&country=uk&listing_type=buy&number_of_results=4&place_name=${placeName ? placeName : ''}`;
-    this.sendRequestNestoria();
-    console.log(this.url);
-  }
-
-  getDataNestoria(){
-    console.dir(this.dataRespond);
-    return  this.dataRespond;
-  }
-
-  getFlats() : Observable<any[]> {
-    return this.http.get(this.url).pipe(map(data=>{
+  sendReqFromSubject(obj){
+    console.dir(obj);
+    let url = `https://api.nestoria.co.uk/api?encoding=json&pretty=1&place_name=${obj.city}&number_of_results=5&page=${obj.numberPage}&action=search_listings&country=uk&listing_type=buy`; //&number_of_results=7
+    console.log(url);
+    return this.http.get(url).pipe(map(data=>{
       let usersList = data["response"]['listings'];
-      if (!usersList || !usersList.length ) {
-        this.trueResponse = false;
-        console.log(this.trueResponse);
-        return
+      console.log(data);
+      if (usersList && usersList.length){
+        return usersList.map(function(flat:any) {
+          return flat;
+        })
       }
-      return usersList.map(function(flat:any) {
-        return flat;
+      catchError(err => {
+        console.log(err);
+        return throwError(err);
       });
     }));
   }
 
-  sendRequestNestoria(){
-    this.http.get(this.url).subscribe((data)=> {
-      this.dataRespond.splice(0, this.dataRespond.length);
-      data["response"]['listings'].forEach((item)=> {
-        this.dataRespond.push(item);
-      });
-      // if (!this.dataRespond.length ) {
-      //   this.trueResponse = false;
-      //   console.log(this.trueResponse);
-      //   // return
-      // }
-      console.dir(this.dataRespond);
-    });
-  }
 
-  getTrueData(){
-    console.log(this.trueResponse);
-    return this.trueResponse;
-  }
+  // url:string = 'https://api.nestoria.co.uk/api?encoding=json&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name=durham&number_of_results=3';
+  // resp;
+  // trueResponse = true;
+  // private dataRespond: any [] = [];
+  // placeName = 'durham';
+  // private allRespond;
+  // setNumberPage(num: number){
+  //   this.numberPage = num;
+  //   console.log(`numberPage = ${num}`);
+  //   // this.url = `https://api.nestoria.co.uk/api?encoding=json&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name=durham&page=${this.numberPage}&number_of_results=3`;
+  //   this.sendRequestNestoria();
+  // }
+
+  // addRegionOnRequestUrl(placeName: string){
+  //   this.placeName = placeName;
+  //   console.log(`newPlaseName = ${this.placeName}`);
+  //   this.getFlats();
+  //   this.sendRequestNestoria();
+  // }
+
+  // getDataNestoria(){
+  //   console.dir(this.dataRespond);
+  //   return  this.dataRespond;
+  // }
+
+  // urlChange(){
+  //   this.url = `https://api.nestoria.co.uk/api?encoding=json&pretty=1&place_name=${this.placeName}&page=${this.numberPage}&number_of_results=3&action=search_listings&country=uk&listing_type=buy`;
+  //   console.log(this.url);
+  // }
+
+  // sendRequestNestoria(){
+  //   this.urlChange();
+  //   this.http.get(this.url).subscribe((data)=> {
+  //     this.dataRespond.splice(0, this.dataRespond.length);
+  //     this.allRespond = data;
+  //     data["response"]['listings'].forEach((item)=> {
+  //       this.dataRespond.push(item);
+  //     });
+  //
+  //     console.dir(this.allRespond);
+  //   });
+  // }
+
+  // getFlats() : Observable<any[]> {
+  //   return this.http.get(this.url).pipe(map(data=>{
+  //     let usersList = data["response"]['listings'];
+  //     return usersList.map((flat:any) => {
+  //       return flat;
+  //     });
+  //   }));
+  // }
+
+
+  //----
 
   private data: Phone[] = [
     { name:"Apple iPhone 7", price: 56000},
@@ -77,28 +107,40 @@ export class SearchService {
   }
 
 
-  //-------------------------------
-
-
-  increment(){
-    this.counter ++;
-  }
-
-  decrement(){
-    this.counter --;
-  }
-
-  getValue(){
-    return this.counter;
-  }
-
-  log(message: string){
-    this.counter++;
-    console.log(message);
-  }
 
 }
 
+
+
+//-------------------------------
+
+
+// increment(){
+//   this.counter ++;
+// }
+//
+// decrement(){
+//   this.counter --;
+// }
+//
+// getValue(){
+//   return this.counter;
+// }
+//
+// log(message: string){
+//   this.counter++;
+//   console.log(message);
+// }
+
+
+//--------------------------------
+
+
+// if (!this.dataRespond.length ) {
+//   this.trueResponse = false;
+//   console.log(this.trueResponse);
+//   // return
+// }
 
 // sendRequestNestoria(){
 //   // console.log('sendRequestNestoria on      '+this.url);

@@ -23,8 +23,8 @@
     </div>
 
     <div class="list-map header-panel-elment">
-      <div class="list-btn btn active-bnt">List</div>
-      <div class="map-btn btn">Map</div>
+      <div class="list-btn btn active-bnt">List. {{id}} </div>
+      <div class="map-btn btn">Map </div>
     </div>
 
   </div>
@@ -32,7 +32,50 @@
 </header>
 
 <main>
-  <app-sidebar></app-sidebar>  <!--    ??? Возможно тут лучше сделать через ngIf 2 компонента-->
+  <aside class="sidebar">
+    <app-sidebar></app-sidebar>  <!--    ??? Возможно тут лучше сделать через ngIf 2 компонента-->
+  </aside>
 
-  <app-main-display  > </app-main-display>  <!--[itemsFlat]="itemsFlat"-->
+  <section class="main-display">
+
+    <pagination-app> </pagination-app>
+    <!--<app-main-display  > </app-main-display>  &lt;!&ndash;[itemsFlat]="itemsFlat"&ndash;&gt;-->
+    <router-outlet> </router-outlet>
+
+    <pagination-app> </pagination-app>
+
+<!--    <div>
+
+      <nav class="pagination-panel">
+
+        <a *ngFor="let it of pagArr" (click)="goPagination(it)" class="pagination-btn" [routerLink]="['buy', it]" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"> {{it}} </a>
+
+        &lt;!&ndash;<a (click)="goPagination()" class="pagination-btn" [routerLink]="['buy', '2']" routerLinkActive="active"  [queryParams]="{'product':'phone', 'price': 200}" > 2 </a>&ndash;&gt;
+        &lt;!&ndash;<a (click)="goPagination()" class="pagination-btn" [routerLink]="['buy', '3']" routerLinkActive="active"  [queryParams]="{'product':'tablet'}"> 3 </a>&ndash;&gt;
+        &lt;!&ndash;<a (click)="goPagination()" class="pagination-btn" [routerLink]="['buy', '4']" routerLinkActive="active"  [queryParams]="{'page':'4'}"> 4 </a>&ndash;&gt;
+        &lt;!&ndash;<a (click)="goPagination()" class="pagination-btn" [routerLink]="['buy', '5']" routerLinkActive="active"   > 5 </a>&ndash;&gt;
+        &lt;!&ndash;<a (click)="goPagination()" class="pagination-btn" [routerLink]="['buy', '6']" routerLinkActive="active"   > 6 </a>&ndash;&gt;
+        &lt;!&ndash;<a (click)="goPagination()" class="pagination-btn" [routerLink]="['buy', '7']" routerLinkActive="active"   > 7 </a>&ndash;&gt;
+      </nav>
+
+    </div>-->
+
+  </section>
+
+  <div>
+    <h1>Маршрутизация в Angular 6</h1>
+    <nav>
+      <a routerLink=""  routerLinkActive="active"  [routerLinkActiveOptions]="{exact:true}"> Главная</a>
+
+      <a routerLink="/about"  routerLinkActive="active"> О сайте</a>
+      <a [routerLink]="['item', '5']" routerLinkActive="active"> item 5 </a>
+      <a [routerLink]="['item', '8']" routerLinkActive="active"> item 8 </a>
+      <a routerLink="/contact"  routerLinkActive="active"> contact</a>
+      <button (click)="goMet()" routerLinkActive="active">На Metanit</button>
+    </nav>
+    <!--<router-outlet></router-outlet>-->
+  </div>
+
 </main>
+
+

@@ -32,7 +32,8 @@
       </div>
 
       <div class="home-valuation">
-        Home Valuation
+        Home Valuation  {{id }}
+        city {{city}}
       </div>
     </div>
 
@@ -40,7 +41,7 @@
 
 </section>
 
-<div *ngIf="falseResponse" class="not-found">
+<div *ngIf="!trueResponse" class="not-found">
 
   <h1> Drat! We can't find any properties</h1>
   <p> We will inform you as soon as we have new properties with these features </p>
@@ -69,19 +70,19 @@
 <!--<br>-->
 <!--<br>-->
 <br>
-<table class="table ">
-  <thead>
-  <tr>
-    <th>Модель</th>
-    <th>Цена</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let item of items">
-    <td>{{item.name}}</td>
-    <td>{{item.price | currency}}</td>
-  </tr>
-  </tbody>
-</table>
+<!--<table class="table ">-->
+  <!--<thead>-->
+  <!--<tr>-->
+    <!--<th>Модель</th>-->
+    <!--<th>Цена</th>-->
+  <!--</tr>-->
+  <!--</thead>-->
+  <!--<tbody>-->
+  <!--<tr *ngFor="let item of items">-->
+    <!--<td>{{item.name}}</td>-->
+    <!--<td>{{item.price | currency}}</td>-->
+  <!--</tr>-->
+  <!--</tbody>-->
+<!--</table>-->
 
-<app-counter1></app-counter1>
+<!--<app-counter1></app-counter1>-->

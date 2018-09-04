@@ -1,0 +1,5 @@
+<div class="pagination-panel">
+
+  <a *ngFor="let it of pagArr" (click)="goPagination(it)" class="pagination-btn" [routerLink]="['buy', it]" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"> {{it}} </a>
+
+</div>
