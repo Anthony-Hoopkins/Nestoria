@@ -14,25 +14,31 @@ export class SearchService {
 
   constructor(private http: HttpClient){ }
 
-  numberPage = 3;
+  total_pages = 0;
+  // numberPage = 3;
 
   sendReqFromSubject(obj){
     console.dir(obj);
     let url = `https://api.nestoria.co.uk/api?encoding=json&pretty=1&place_name=${obj.city}&number_of_results=5&page=${obj.numberPage}&action=search_listings&country=uk&listing_type=buy`; //&number_of_results=7
     console.log(url);
     return this.http.get(url).pipe(map(data=>{
-      let usersList = data["response"]['listings'];
+      this.total_pages = data["response"].total_pages;
+      let flatList = data["response"]['listings'];
       console.log(data);
-      if (usersList && usersList.length){
-        return usersList.map(function(flat:any) {
-          return flat;
-        })
+      if (flatList && flatList.length){
+        return flatList.map(flat =>  flat )
+      } else {
+        return []
       }
-      catchError(err => {
-        console.log(err);
-        return throwError(err);
-      });
+      // ,
+      // catchError(err => {
+      //   console.log(err);
+      //   return throwError(err);
+      // });
     }));
+  /*  const favoriteArr = JSON.parse(localStorage.getItem('favoriteStorage')) || [];
+    console.log(favoriteArr);
+    return favoriteArr;*/
   }
 
 
@@ -81,8 +87,8 @@ export class SearchService {
 
   // getFlats() : Observable<any[]> {
   //   return this.http.get(this.url).pipe(map(data=>{
-  //     let usersList = data["response"]['listings'];
-  //     return usersList.map((flat:any) => {
+  //     let flatList = data["response"]['listings'];
+  //     return flatList.map((flat:any) => {
   //       return flat;
   //     });
   //   }));
@@ -154,8 +160,8 @@ export class SearchService {
 
 // getFlats() : Observable<any[]> {
 //   return this.http.get(this.url).pipe(map(data=>{
-//     let usersList = data["response"]['listings'];
-//     return usersList.map(function(flat:any) {
+//     let flatList = data["response"]['listings'];
+//     return flatList.map(function(flat:any) {
 //       console.log(flat);
 //       return flat;
 //     });

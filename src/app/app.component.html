@@ -1,12 +1,16 @@
 <header>
 
-  <div class="logo"><a href="#"><img class="logo-img" src="src/assets/img/logo_v1.svg" alt="Logo"></a> </div>
+  <div class="logo">
+    <a routerLink="">
+      <img class="logo-img" src="/src/assets/img/logo_v1.svg" alt="Logo">
+    </a>
+  </div>
 
   <div class="header-panel">
 
     <div class="filters-alert header-panel-elment">
-      <div class="filters-bnt btn active-bnt"> Filters</div>
-      <div class="alerts-btn btn"> Alerts</div>
+      <div class="filters-bnt btn active-bnt"> Filters </div>
+      <div class="alerts-btn btn"> Alerts </div>
     </div>
 
     <div class="search-string header-panel-elment">
@@ -23,8 +27,8 @@
     </div>
 
     <div class="list-map header-panel-elment">
-      <div class="list-btn btn active-bnt">List. {{id}} </div>
-      <div class="map-btn btn">Map </div>
+      <div [routerLink]="['buy']" routerLinkActive="active-bnt" class="list-btn btn ">List {{id}} </div>
+      <div  routerLink="/favorite" routerLinkActive="active-bnt" class="fav-btn btn">FavList <div class="fav-btn-img"> </div> </div>
     </div>
 
   </div>
@@ -33,37 +37,33 @@
 
 <main>
   <aside class="sidebar">
+    <h3 class="sidebar-title">{{title}}</h3>
     <app-sidebar></app-sidebar>  <!--    ??? Возможно тут лучше сделать через ngIf 2 компонента-->
   </aside>
 
   <section class="main-display">
 
-    <pagination-app> </pagination-app>
-    <!--<app-main-display  > </app-main-display>  &lt;!&ndash;[itemsFlat]="itemsFlat"&ndash;&gt;-->
-    <router-outlet> </router-outlet>
+    <div class="overlay-loader">
+      <div class="loader">
+        <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div>
+      </div>
+    </div>
 
-    <pagination-app> </pagination-app>
+    <!--<pagination-app> </pagination-app>-->
 
-<!--    <div>
+    <router-outlet>  </router-outlet>
 
-      <nav class="pagination-panel">
-
-        <a *ngFor="let it of pagArr" (click)="goPagination(it)" class="pagination-btn" [routerLink]="['buy', it]" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"> {{it}} </a>
-
-        &lt;!&ndash;<a (click)="goPagination()" class="pagination-btn" [routerLink]="['buy', '2']" routerLinkActive="active"  [queryParams]="{'product':'phone', 'price': 200}" > 2 </a>&ndash;&gt;
-        &lt;!&ndash;<a (click)="goPagination()" class="pagination-btn" [routerLink]="['buy', '3']" routerLinkActive="active"  [queryParams]="{'product':'tablet'}"> 3 </a>&ndash;&gt;
-        &lt;!&ndash;<a (click)="goPagination()" class="pagination-btn" [routerLink]="['buy', '4']" routerLinkActive="active"  [queryParams]="{'page':'4'}"> 4 </a>&ndash;&gt;
-        &lt;!&ndash;<a (click)="goPagination()" class="pagination-btn" [routerLink]="['buy', '5']" routerLinkActive="active"   > 5 </a>&ndash;&gt;
-        &lt;!&ndash;<a (click)="goPagination()" class="pagination-btn" [routerLink]="['buy', '6']" routerLinkActive="active"   > 6 </a>&ndash;&gt;
-        &lt;!&ndash;<a (click)="goPagination()" class="pagination-btn" [routerLink]="['buy', '7']" routerLinkActive="active"   > 7 </a>&ndash;&gt;
-      </nav>
-
-    </div>-->
+    <!--<pagination-app> </pagination-app>-->    <!--  В этой пагинации работает актив!!  -->
 
   </section>
 
-  <div>
-    <h1>Маршрутизация в Angular 6</h1>
+  <div class="right-aside">
+    <br>
+    <br>
+    <br>
+    <br>
+    <h3> Маршрутизация в Angular 6 </h3>
+
     <nav>
       <a routerLink=""  routerLinkActive="active"  [routerLinkActiveOptions]="{exact:true}"> Главная</a>
 
@@ -73,7 +73,7 @@
       <a routerLink="/contact"  routerLinkActive="active"> contact</a>
       <button (click)="goMet()" routerLinkActive="active">На Metanit</button>
     </nav>
-    <!--<router-outlet></router-outlet>-->
+
   </div>
 
 </main>

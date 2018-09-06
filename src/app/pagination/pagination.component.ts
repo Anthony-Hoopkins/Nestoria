@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {TransferService} from "../transfer.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'pagination-app',
@@ -9,24 +10,27 @@ import {TransferService} from "../transfer.service";
 export class PaginationComponent implements OnInit{
   pagArr: number[] = [1,2,3,4,5,6];
 
-  constructor(private transferService: TransferService){}
+  constructor(private transferService: TransferService, private router: Router, private activateRoute: ActivatedRoute){}
 
   ngOnInit(){
 
     this.transferService.subjectParams.subscribe(params => {
-        this.setArr(params);
+      this.setArr(params);
+      this.router.navigate([`/buy/${params['numberPage']}`]);
     });
 
   }
 
-  setArr(params){
-    this.pagArr = this.transferService.setPagArr(params.numberPage);
-  }
-
   goPagination(num){
 
-    this.transferService.setNumPage(num);
+    this.transferService.setData({numberPage: num});
     console.log(num);
+
+  }
+
+  setArr(params){
+
+    this.pagArr = this.transferService.setPagArr(params.numberPage);
 
   }
 }

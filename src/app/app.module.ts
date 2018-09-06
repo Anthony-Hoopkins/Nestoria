@@ -13,6 +13,8 @@ import {AboutComponent} from "./about/about.component";
 import {HomeComponent} from "./home/home.component";
 import {ItemComponent} from "./item/item.component";
 import {PaginationComponent} from "./pagination/pagination.component";
+import {FavoriteDisplayComponent} from "./favorite-display/favorite-display.component";
+import {FlatsListComponent} from "./flats-list/flats-list.component";
 
 
 // определение маршрутов
@@ -24,6 +26,7 @@ const appRoutes: Routes = [
   { path: 'item/:id', component: ItemComponent},
   { path: 'page/:id', component: ItemComponent},
   { path: 'buy/:id', component: MainDisplayComponent},
+  { path: 'favorite', component: FavoriteDisplayComponent},
   { path: 'buy', redirectTo: '/buy/'},
   { path: '**', component: NotFoundComponent }
 ];
@@ -31,7 +34,8 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent, SidebarComponent, Counter1Component, MainDisplayComponent, HomeComponent, AboutComponent, NotFoundComponent, ItemComponent, PaginationComponent
+    AppComponent, SidebarComponent, Counter1Component, MainDisplayComponent, HomeComponent, AboutComponent, NotFoundComponent,
+    ItemComponent, PaginationComponent, FavoriteDisplayComponent, FlatsListComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, HttpClientJsonpModule, RouterModule.forRoot(appRoutes)

@@ -10,11 +10,12 @@ import {Phone} from './phone';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.css',
+                './spinner.css'],
   providers: [SearchService, TransferService]
 })
 export class AppComponent implements OnInit {
-  title = 'Nestoria';
+  title = 'MY_Nestoria';
   items: Phone[] = [];
   id: number  = 1;
   public searchForm: FormGroup;
@@ -25,31 +26,32 @@ export class AppComponent implements OnInit {
               private router: Router, private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.subscription = this.activateRoute.params.subscribe(params=>{this.id = params['id']});
-    this.items = this.searchService.getData();
+    // this.subscription = this.activateRoute.params.subscribe(params=>{this.id = params['id']});
+    // this.items = this.searchService.getData();
     this.searchForm = this.formBuilder.group({
       'searchString': ['bristol',  [Validators.required, Validators.minLength(3)]],
     });
 
   }
 
-  goMet() {
-
-    this.router.navigate(['/about']);
-
-  }
 
   submit() {
 
-    this.transferService.setData(this.searchForm.controls['searchString'].value);
+    this.transferService.setData({city: this.searchForm.controls['searchString'].value});
     console.log(this.activateRoute.params);
 
   }
 
+
+  //-----
+
+
+  goMet() {
+    this.router.navigate(['/about']);
+  }
+
   addItem() {
-
     this.searchService.addData(this.searchForm.controls['searchString'].value, 2200);
-
   }
 
 

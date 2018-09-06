@@ -1,37 +1,53 @@
 import { Injectable } from '@angular/core';
-import {SearchService} from "./search.service";
 import {Subject} from "rxjs/internal/Subject";
-
+import {UrlParams} from "./url-params";
 
 @Injectable()
 export class TransferService {
 
-  constructor(private searchService: SearchService) {}
-
-  private city:string = 'cotham';
-  urlParams = {
+  urlParams: UrlParams = {
     numberPage: 1,
     city: 'durham'
   };
   subjectParams = new Subject();
+  transferArray = new Subject();
 
-  setData(cityName: string){
-
-    if (this.urlParams.city !== cityName){
-      this.urlParams.numberPage = 1;
-      this.urlParams.city = cityName;
+  setData(obj){
+    // console.log(obj);
+    // console.log(obj.city);
+    // if (obj.city !== undefined && this.urlParams.city !== obj.city){
+      this.urlParams.numberPage = obj.numberPage ? obj.numberPage : 1;
+      this.urlParams = {...this.urlParams, ...obj};
       this.subjectParams.next(this.urlParams);
-      return;
-    }
-    console.log('CСовпадение!!!');
+    //   return;
+    // }
+    // console.log('CСовпадение!!!');
   }
 
-  setNumPage(numPage: number){
+  transferData (arr){
 
-    this.urlParams.numberPage = numPage;
-    this.subjectParams.next(this.urlParams);
-
+    this.transferArray.next(arr);
   }
+
+
+
+  // setData(cityName: string){
+  //
+  //   if (this.urlParams.city !== cityName){
+  //     this.urlParams.numberPage = 1;
+  //     this.urlParams.city = cityName;
+  //     this.subjectParams.next(this.urlParams);
+  //     return;
+  //   }
+  //   console.log('CСовпадение!!!');
+  // }
+  //
+  // setNumPage(numPage: number){
+  //
+  //   this.urlParams.numberPage = numPage;
+  //   this.subjectParams.next(this.urlParams);
+  //
+  // }
 
   // mySub = this.mySubject.subscribe(x => console.log(`${x} ${x}`));
   // mySub2 = this.mySubject.subscribe(x => console.log('asfgsdfg  ' + x));
@@ -49,7 +65,6 @@ export class TransferService {
   setPagArr(num: number){
     const arr = [];
     if (num >= 1 && num <=6){
-      // let x = 7%num;
       for (let i = 1 ; i < num; i++ ){
         arr.push(i);
       }
@@ -62,7 +77,6 @@ export class TransferService {
         arr.push(i);
       }
     }
-    console.log(arr);
     return arr;
   }
 

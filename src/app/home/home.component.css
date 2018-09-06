@@ -1,0 +1,38 @@
+.home-display{
+  width: 100%;
+  background: url("/src/assets/img/start_map.png");
+  padding: 1px;
+}
+
+.popup-window{
+  width: 50%;
+  height: 300px;
+  margin: 10% auto;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: #a1a1a1 0 0 18px 3px;
+  text-align: center;
+}
+
+.popup-title{
+  color: #0073d9;
+  padding: 15px;
+}
+
+.search-form{
+  padding: 15px;
+}
+
+
+.search-string-input{
+  height: 25px;
+  width: 70%;
+  margin: 10px 10px 10px 10px;
+  padding-left: 15px;
+  border-radius: 3px;
+  border: solid lightgrey 1px;
+}
+
+.search-string-input:active{
+  border: solid #0073d9 1px;
+}

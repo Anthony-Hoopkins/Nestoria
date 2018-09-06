@@ -1,0 +1,14 @@
+<section class="home-display">
+  <div class="popup-window">
+    <h1 class="popup-title"> The easiest way to find UK property </h1>
+    <form class="search-form" > <!--[formGroup]="searchForm" novalidate (ngSubmit)="submit()"-->
+      <input id="radio-sale" type="radio" class="radio" name="sale_or_rent" value="sale" checked >
+      <label for="radio-sale"> for sale </label>
+      <input id="radio-rent" type="radio" class="radio" name="sale_or_rent" value="rent">
+      <label for="radio-rent"> to rent </label>
+      <br>
+      <input  class="search-string-input" type="text" placeholder="London"> <!--(change)="drawLine()"-->  <!--formControlName="searchString"-->
+      <!--<button class="btnn" (click)="addItem()" [disabled]="searchForm.invalid"> GO </button>-->
+    </form>
+  </div>
+</section>
