@@ -17,15 +17,17 @@ export class FlatsListComponent implements OnInit, DoCheck {
   trueResponse = true;
 
   // itemsFlat: any[] = [];
-  itemsFlat;
-  city: string = 'durham';
-  private subscription: Subscription;
-  id: number  = 1;
   // starActiveIndicator = [];
   // startParams: UrlParams = {
   //   numberPage: 1,
   //   city: 'durham'
   // };
+
+  itemsFlat;
+  city: string = 'durham';
+  private subscription: Subscription;
+  id: number  = 1;
+
   favoriteArr = JSON.parse(localStorage.getItem(favoriteStorage)) || [];
 
   constructor(private router: Router, private activateRoute: ActivatedRoute, private  searchService: SearchService, private transferService: TransferService) {
@@ -49,6 +51,38 @@ export class FlatsListComponent implements OnInit, DoCheck {
   }
 
 
+  ngOnInit() {
+
+    this.transferService.transferArray.subscribe(arr => {
+
+      console.log('this.-----transferService.transf_erArray.subscribe');
+      console.log(this.itemsFlat);
+      this.itemsFlat = arr;
+      // this.itemsFlat = arr.map( item => item );
+      console.log(this.itemsFlat);
+
+    });
+
+    // this.subscription = this.activateRoute.params.subscribe(params=>{this.id = params['id']});
+
+    // console.log(this.id);
+
+    // this.transferService.subjectParams.subscribe(params => {
+    //   this.setParams(params);
+    // });
+
+
+
+
+    // this.transferService.subjectParams.subscribe(params => {
+    //   this.setParams(params);
+    // });
+
+    // console.log(this.city);
+
+    // this.setParams(this.startParams);
+
+  }
 
   // setParams(params){
   //   this.searchService.sendReqFromSubject(params).subscribe(data => {
@@ -95,40 +129,10 @@ export class FlatsListComponent implements OnInit, DoCheck {
 
 
 
-  ngOnInit() {
-
-    // this.subscription = this.activateRoute.params.subscribe(params=>{this.id = params['id']});
-
-    console.log(this.id);
-
-    // this.transferService.subjectParams.subscribe(params => {
-    //   this.setParams(params);
-    // });
-
-
-
-    this.transferService.transferArray.subscribe(arr => {
-
-      console.log('this.transferService.transferArray.subscribe');
-      console.log(this.itemsFlat);
-      this.itemsFlat = arr;
-      console.log(this.itemsFlat);
-
-    });
-
-    // this.transferService.subjectParams.subscribe(params => {
-    //   this.setParams(params);
-    // });
-
-    console.log(this.city);
-
-    // this.setParams(this.startParams);
-
-  }
 
   ngDoCheck(){
 
-    console.log(this.itemsFlat.length);
+    // console.log(this.itemsFlat.length);
 
   }
 

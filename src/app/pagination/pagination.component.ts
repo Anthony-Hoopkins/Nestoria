@@ -15,8 +15,10 @@ export class PaginationComponent implements OnInit{
   ngOnInit(){
 
     this.transferService.subjectParams.subscribe(params => {
-      this.setArr(params);
       this.router.navigate([`/buy/${params['numberPage']}`]);
+
+      this.setArr(params);
+      // this.router.navigate(['buy']);
     });
 
   }

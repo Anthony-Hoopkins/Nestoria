@@ -1,4 +1,32 @@
-<section *ngIf="trueResponse; else not_found">  <!--then loading -->
+<div *ngIf="!spinnerOnOff; else loading">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="overlay-loader">
+    <div class="loader">
+      <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #loading>
+
+  <pagination-app> </pagination-app>
+
+  <flat-item-app *ngFor="let item of itemsFlat, let index = index"  [item]="item" [index]="index" > </flat-item-app>
+
+  <pagination-app> </pagination-app>
+
+
+</ng-template>
+
+
+<!--
+
+<section *ngIf="trueResponse; else not_found">  &lt;!&ndash;then loading &ndash;&gt;
 
   <div *ngIf="loadingVar; else loading">
 
@@ -18,9 +46,9 @@
 
 </section>
 
-<!--<ng-template  #loading>-->
-  <!--...LOAD...LOAD...LOAD...LOAD...LOAD...LOAD...LOAD...LOAD...LOAD...LOAD...LOAD...LOAD-->
-<!--</ng-template>-->
+&lt;!&ndash;<ng-template  #loading>&ndash;&gt;
+  &lt;!&ndash;...LOAD...LOAD...LOAD...LOAD...LOAD...LOAD...LOAD...LOAD...LOAD...LOAD...LOAD...LOAD&ndash;&gt;
+&lt;!&ndash;</ng-template>&ndash;&gt;
 
 <ng-template #not_found class="not-found">
 
@@ -28,6 +56,7 @@
   <p> We will inform you as soon as we have new properties with these features </p>
 
 </ng-template>
+-->
 
 
 

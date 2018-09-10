@@ -1,55 +1,56 @@
-<section *ngIf="trueResponse; else not_found">
+<!--<section > --> <!--*ngIf="trueResponse; else not_found"-->
 
   <!--<pagination-app> </pagination-app>-->
 
-  <div  class="flat-card" *ngFor="let item of itemsFlat, let index = index ">
+  <!--<div  class="flat-card" *ngFor="let item of itemsFlat, let index = index ">-->
 
-    <div class="flat-card-img">
-      <img class="flat-card-img-img" src="{{item.img_url}}" alt="{{item.title}}" title="{{item.title}}">
-    </div>
+    <!--<div class="flat-card-img">-->
+      <!--<img class="flat-card-img-img" src="{{item.img_url}}" alt="{{item.title}}" title="{{item.title}}">-->
+    <!--</div>-->
 
-    <div class="flat-card-description">
-      <div class="description-title">
-        <div class="description-title-title">{{item.title}}</div>
-        <div [ngClass]="{starActive: item['starActiveIndicator'] ? item['starActiveIndicator'] : false}" (click)="toggleActive(index)" class="description-star"> </div>
-      </div>
+    <!--<div class="flat-card-description">-->
+      <!--<div class="description-title">-->
+        <!--<div class="description-title-title">{{item.title}}</div>-->
+        <!--<div [ngClass]="{starActive: item['starActiveIndicator'] ? item['starActiveIndicator'] : false}" (click)="toggleActive(index)" class="description-star"> </div>-->
+      <!--</div>-->
 
-      <div class="description-keywords">
-        {{item.keywords}}
-      </div>
+      <!--<div class="description-keywords">-->
+        <!--{{item.keywords}}-->
+      <!--</div>-->
 
-      <div class="description-descr">
-        {{item.summary}}
-      </div>
+      <!--<div class="description-descr">-->
+        <!--{{item.summary}}-->
+      <!--</div>-->
 
-      <div class="description-seen">
-        <span class="description-seen--active"> {{item.updated_in_days_formatted}} </span>
-        <span> on </span>
-        <span>  {{item.datasource_name | uppercase}} </span>
-      </div>
-    </div>
+      <!--<div class="description-seen">-->
+        <!--<span class="description-seen&#45;&#45;active"> {{item.updated_in_days_formatted}} </span>-->
+        <!--<span> on </span>-->
+        <!--<span>  {{item.datasource_name | uppercase}} </span>-->
+      <!--</div>-->
+    <!--</div>-->
 
-    <div class="flat-card-price-column">
-      <div class="price-string">
-        {{item.price_formatted}}
-      </div>
+    <!--<div class="flat-card-price-column">-->
+      <!--<div class="price-string">-->
+        <!--{{item.price_formatted}}-->
+      <!--</div>-->
 
-      <div class="home-valuation">
-        Home Valuation  {{id }}
-        city {{city}}
-      </div>
-    </div>
+      <!--<div class="home-valuation">-->
+        <!--Home Valuation  {{id }}-->
+        <!--city {{city}}-->
+      <!--</div>-->
+    <!--</div>-->
 
-  </div>
+  <!--</div>-->
 
   <!--<pagination-app> </pagination-app>-->
 
-</section>
+<!--
+</section>-->
 
-<ng-template #not_found class="not-found">
+<!--<ng-template #not_found class="not-found">
 
   <h1> Drat! We can't find any properties </h1>
   <p> We will inform you as soon as we have new properties with these features </p>
 
-</ng-template>
+</ng-template>-->
 

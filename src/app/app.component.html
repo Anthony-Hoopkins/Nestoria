@@ -6,11 +6,12 @@
     </a>
   </div>
 
+
   <div class="header-panel">
 
     <div class="filters-alert header-panel-elment">
-      <div class="filters-bnt btn active-bnt"> Filters </div>
-      <div class="alerts-btn btn"> Alerts </div>
+      <!--<div class="filters-bnt btn active-bnt"> Filters </div>-->
+      <!--<div class="alerts-btn btn"> Alerts </div>-->
     </div>
 
     <div class="search-string header-panel-elment">
@@ -18,8 +19,8 @@
       <span class="search-icon"></span>
 
       <form class="search-form" [formGroup]="searchForm" novalidate (ngSubmit)="submit()">
-        <input formControlName="searchString" class="search-string-input" type="text" placeholder="Enter City"> <!--(change)="drawLine()"-->
-        <button class="btnn" (click)="addItem()" [disabled]="searchForm.invalid"> GO </button>
+        <input formControlName="searchString" class="search-string-input" type="text" placeholder="Enter City" value="{{tempVal}}" > <!--(change)="drawLine()"-->
+        <button class="btnn"  [disabled]="searchForm.invalid" [routerLink]="['buy']"> GO </button>
       </form>
 
       <span class="search-mask__label"> | Change</span>
@@ -27,8 +28,8 @@
     </div>
 
     <div class="list-map header-panel-elment">
-      <div [routerLink]="['buy']" routerLinkActive="active-bnt" class="list-btn btn ">List {{id}} </div>
-      <div  routerLink="/favorite" routerLinkActive="active-bnt" class="fav-btn btn">FavList <div class="fav-btn-img"> </div> </div>
+      <div routerLink="/buy" routerLinkActive="active-bnt" class="list-btn btn" (click)="navQueryApp()"> List </div>  <!-- [routerLink]="['/buy']"  (click)="navQuery('/buy')" -->
+      <div  routerLink="/favorite" routerLinkActive="active-bnt" class="fav-btn btn" > FavList <div class="fav-btn-img"> </div> </div>  <!-- (click)="navQuery('/favorite')"-->
     </div>
 
   </div>
@@ -36,46 +37,59 @@
 </header>
 
 <main>
+
   <aside class="sidebar">
-    <h3 class="sidebar-title">{{title}}</h3>
-    <app-sidebar></app-sidebar>  <!--    ??? Возможно тут лучше сделать через ngIf 2 компонента-->
+
+    <h3 class="sidebar-title"></h3>
+    <app-sidebar></app-sidebar>
+
   </aside>
 
   <section class="main-display">
 
-    <div class="overlay-loader">
-      <div class="loader">
-        <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div>
-      </div>
-    </div>
-
-    <!--<pagination-app> </pagination-app>-->
-
     <router-outlet>  </router-outlet>
-
-    <!--<pagination-app> </pagination-app>-->    <!--  В этой пагинации работает актив!!  -->
 
   </section>
 
   <div class="right-aside">
-    <br>
-    <br>
-    <br>
-    <br>
-    <h3> Маршрутизация в Angular 6 </h3>
-
-    <nav>
-      <a routerLink=""  routerLinkActive="active"  [routerLinkActiveOptions]="{exact:true}"> Главная</a>
-
-      <a routerLink="/about"  routerLinkActive="active"> О сайте</a>
-      <a [routerLink]="['item', '5']" routerLinkActive="active"> item 5 </a>
-      <a [routerLink]="['item', '8']" routerLinkActive="active"> item 8 </a>
-      <a routerLink="/contact"  routerLinkActive="active"> contact</a>
-      <button (click)="goMet()" routerLinkActive="active">На Metanit</button>
-    </nav>
 
   </div>
 
 </main>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--       <pagination-app> </pagination-app> <pagination-app> </pagination-app>-->    <!--  В этой пагинации работает актив!!  -->
+<!--<br>-->
+<!--<br>-->
+<!--<h3> Маршрутизация в Angular 6 </h3>-->
+
+<!--<nav>-->
+<!--<a routerLink=""  routerLinkActive="active"  [routerLinkActiveOptions]="{exact:true}"> Главная</a>-->
+
+<!--<a routerLink="/about"  routerLinkActive="active"> О сайте</a>-->
+<!--<a [routerLink]="['item', '5']" routerLinkActive="active"> item 5 </a>-->
+<!--<a [routerLink]="['item', '8']" routerLinkActive="active"> item 8 </a>-->
+<!--<a routerLink="/contact"  routerLinkActive="active"> contact</a>-->
+<!--<button (click)="goMet()" routerLinkActive="active">На Metanit</button>-->
+<!--</nav>-->

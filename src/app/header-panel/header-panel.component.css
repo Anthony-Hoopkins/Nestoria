@@ -50,7 +50,7 @@ h1,h2,h3,h4,h5,h6 {
   border-radius: 3px;
 }
 
-.filters-alert, .list-map{
+.filters-alert .list-map{
   width: 20%;
 }
 
@@ -91,27 +91,7 @@ main{
   margin: 0 auto;
 }
 
-/*.active {*/
-  /*color: #fff;*/
-  /*background-color: #f6bb42;*/
-/*}*/
-
-
-/*.pagination-panel{*/
-  /*text-align: center;*/
-  /*margin: 10px;*/
-/*}*/
-
-/*.pagination-btn{*/
-  /*padding: 7px;*/
-  /*display: inline-block;*/
-  /*cursor: pointer;*/
-  /*border: solid lightgrey 1px;*/
-  /*width: 20px;*/
-  /*text-decoration: none;*/
-/*}*/
-
-/*.pagination-btn:hover{*/
-  /*background-color: gainsboro;*/
-  /*color: orange;*/
-/*}*/
+.active {
+  color: #fff;
+  background-color: #f6bb42;
+}

@@ -6,73 +6,64 @@ import {SearchService} from "../search.service";
 import {TransferService} from "../transfer.service";
 import {UrlParams} from "../url-params";
 
-// import {Phone} from "../phone";
-// import { Observable, Subject, ReplaySubject, from, of, range } from 'rxjs';
-// import { fromEvent } from 'rxjs';
-// import { ajax } from 'rxjs/ajax';
-// import { map, filter, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 const favoriteStorage = 'favoriteStorage';
 
 @Component({
   selector: 'app-main-display',
   templateUrl: './main-display.component.html',
-  styleUrls: ['./main-display.component.css']
+  styleUrls: ['./main-display.component.css',
+    '../spinner.css']
 })
 export class MainDisplayComponent implements OnInit, AfterViewInit, OnDestroy, DoCheck {
+
   startParams: UrlParams = {
     numberPage: 1,
-    city: 'durham'
+    city: 'Manchester'
   };
-  // trueResponse = false;
-  trueResponse = true;
-  // loadingVar = true;
-  loadingVar:boolean = true ;
-  // loadingVar2:boolean = true;
 
-//
-//   itemsFlat: any[] = [];
-//   city: string = 'durham';
-//   private subscription: Subscription;
-//   id: number  = 1;
-//   // starActiveIndicator = [];
-//   startParams: UrlParams = {
-//     numberPage: 1,
-//     city: 'durham'
-//   };
-//   favoriteArr = JSON.parse(localStorage.getItem(favoriteStorage)) || [];
-//
+  itemsFlat;
+  private subscription: Subscription;
+  private querySubscription: Subscription;
+
+  id: number  = 1;
+  spinnerOnOff;
+
+  trueResponse = true;
+  loadingVar:boolean = true ;
+
   constructor(private router: Router, private activateRoute: ActivatedRoute, private  searchService: SearchService, private transferService: TransferService) {
 
-  }
+    this.startParams.city =  localStorage.getItem('cityName') || '';
 
-  ngDoCheck(){
-    console.log('ngDoCheck');
-    // this.loadingVar = this.loadingVar2;
-  }
+    this.querySubscription = activateRoute.queryParams.subscribe((queryParam: any) => {
+        if (queryParam['city']) {
+          this.startParams.city = queryParam['city'];
+          localStorage.setItem('cityName', this.startParams.city);
+          console.log(this.startParams.city);
+          this.transferService.changeData({city: this.startParams.city});
+        }
+      }
+    );
 
-
-  ngAfterViewInit(){
-    console.log('ngAfterViewInit');
-    // this.loadingVar2 = true;
-  }
-
-  ngOnDestroy(){
-    console.log('OnDestroy');
   }
 
   ngOnInit() {
 
-    this.transferService.subjectParams.subscribe(params => {
-      this.setParams(params);
+    this.subscription = this.transferService.spinnerOnOff.subscribe(val =>  {
+      this.spinnerOnOff = val;
+      console.log(val);
     });
 
+    this.transferService.subjectParams.subscribe(params => {
 
+      this.setParams(params);
 
-    console.log('ngOnInit');
-    // this.loadingVar = this.loadingVar2;
+    });
 
     this.setParams(this.startParams);
+
+    console.log('ngOnInit');
 
   }
 
@@ -81,10 +72,13 @@ export class MainDisplayComponent implements OnInit, AfterViewInit, OnDestroy, D
       if (data.length){
         // this.trueResponse = true;
         // this.starActiveIndicator = [];
-        // this.itemsFlat = data;
-        console.log('this.searchService.sendReqFromSubject(params).subscribe(data => {');
-        console.log(data);
-        this.transferService.transferData(data);
+        this.itemsFlat = data;
+
+        // console.log('searchService.sendReqFromSubject(params).subscribe - finish ');
+        this.transferService.spinnerOnOff.next(true);
+
+        // console.log(data);
+        // this.transferService.transferData(data);
         // data.forEach((item, i) => {
         //   this.favoriteArr.forEach(prop =>{
         //     if (item.lister_url === prop.lister_url){
@@ -95,11 +89,32 @@ export class MainDisplayComponent implements OnInit, AfterViewInit, OnDestroy, D
         // });
         // console.log(this.itemsFlat);
       } else{
-        this.trueResponse = false;
+        // this.trueResponse = false;
         console.log("No Array");
       }
     });
   }
+
+
+  ngDoCheck(){
+    // console.log('ngDoCheck');
+    // this.loadingVar = this.loadingVar2;
+  }
+
+
+  ngAfterViewInit(){
+    console.log('ngAfterViewInit');
+    // this.loadingVar2 = true;
+  }
+
+  ngOnDestroy(){
+    // this.transferService.subjectParams.unsubscribe();
+    // this.searchService.sendReqFromSubject(params).unsubscribe();
+    console.log('On-------------------------------------------------Destroy');
+    this.subscription.unsubscribe();
+    this.querySubscription.unsubscribe();
+  }
+
 
 //
 //   toggleActive(index){
@@ -139,6 +154,19 @@ export class MainDisplayComponent implements OnInit, AfterViewInit, OnDestroy, D
 //       }
 //     });
 //   }
+//
+
+  //
+//   itemsFlat: any[] = [];
+//   city: string = 'durham';
+//   private subscription: Subscription;
+//   id: number  = 1;
+//   // starActiveIndicator = [];
+//   startParams: UrlParams = {
+//     numberPage: 1,
+//     city: 'durham'
+//   };
+//   favoriteArr = JSON.parse(localStorage.getItem(favoriteStorage)) || [];
 //
 
 

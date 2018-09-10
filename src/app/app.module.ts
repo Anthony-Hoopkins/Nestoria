@@ -15,6 +15,8 @@ import {ItemComponent} from "./item/item.component";
 import {PaginationComponent} from "./pagination/pagination.component";
 import {FavoriteDisplayComponent} from "./favorite-display/favorite-display.component";
 import {FlatsListComponent} from "./flats-list/flats-list.component";
+import {FlatItemComponent} from "./flat-item/flat-item.component";
+import {HeaderPanelComponent} from "./header-panel/header-panel.component";
 
 
 // определение маршрутов
@@ -35,7 +37,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent, SidebarComponent, Counter1Component, MainDisplayComponent, HomeComponent, AboutComponent, NotFoundComponent,
-    ItemComponent, PaginationComponent, FavoriteDisplayComponent, FlatsListComponent
+    ItemComponent, PaginationComponent, FavoriteDisplayComponent, FlatsListComponent, FlatItemComponent, HeaderPanelComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, HttpClientJsonpModule, RouterModule.forRoot(appRoutes)

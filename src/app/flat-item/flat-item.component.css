@@ -1,0 +1,152 @@
+.flat-card{
+  width: 95%;
+  display: flex;
+  height: 200px;
+  margin-bottom: 15px;
+  border: solid white 1px;
+  box-shadow: 1px 5px 2px -2px lightgrey;
+  cursor: pointer;
+}
+
+.flat-card:hover{
+  background: #e6fdff;
+  box-shadow: 1px 5px 2px -2px #d3c2be;
+  border-color: #f6bb42; /*#73ff7f; */
+}
+
+.description-title-title{
+  width: 85%;
+}
+
+.flat-card-img{
+  position:relative;
+  width: 280px;
+}
+
+.flat-card-img-img{
+  /*width: 150px;*/
+  /*height: 150px;*/
+  height: 100%;
+  max-height: 210px;
+  width: auto;
+}
+
+.result__details__images {
+  background-color: #fefefe;
+  color: #5c5c5c;
+  opacity: .9;
+  border-radius: 3px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  font-size: .7em;
+  margin: 7px;
+}
+
+.flat-card-description{
+  padding-left: 1%;
+  width: 70%;
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*justify-content: space-between;*/
+}
+
+.description-title{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  color: #0073d9;
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
+.description-star{
+  height: 21px;
+  width: 23px;
+  background: url('/src/assets/img/favor_hov.png');
+  background-size: cover;
+  margin-right: 20px;
+  background-position: 22px 0;
+}
+
+.description-star:hover{
+  background-position: 0;
+}
+
+.starActive{
+  background-position: 0;
+}
+
+.starActive:hover{
+  background-position: 22px 0;
+}
+
+.not-found{
+  font-size: 1.2em;
+}
+
+.description-keywords{
+  margin: 10px 0;
+}
+
+.description-descr{
+  margin: 10px 0;
+  color: #a1a1a1;
+  /*overflow: hidden;*/
+}
+
+.description-seen{
+  margin-top: 20px;
+}
+
+.description-seen--active{
+  color: #f6bb42;
+}
+
+.flat-card-price-column{
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.price-string{
+  width: 100%;
+  height: 40px;
+  background-color: #4a4a4a;
+  border-radius: 0;
+  font-size: 1em;
+  font-weight: bold;
+  line-height: 40px;
+  color: #fff;
+  text-align: center;
+}
+
+.home-valuation{
+  color: #0073d9;
+  font-size: .9em;
+}
+
+.active {
+  color:red;
+  background-color: #ace4c8;
+}
+
+/*.pagination-panel{*/
+/*text-align: center;*/
+/*margin: 10px;*/
+/*}*/
+
+/*.pagination-btn{*/
+/*padding: 7px;*/
+/*display: inline-block;*/
+/*cursor: pointer;*/
+/*border: solid lightgrey 1px;*/
+/*width: 20px;*/
+/*}*/
+
+/*.pagination-btn:hover{*/
+/*background-color: gainsboro;*/
+/*color: orange;*/
+/*}*/

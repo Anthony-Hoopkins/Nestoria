@@ -9,8 +9,29 @@ export class TransferService {
     numberPage: 1,
     city: 'durham'
   };
+
   subjectParams = new Subject();
+  spinnerOnOff = new Subject();
+  transferCity = new Subject();
+
+
   transferArray = new Subject();
+  dataFromHomePage = new Subject();
+
+  // getCityFromHome(){
+  //     let tempVal;
+  //      this.dataFromHomePage.subscribe(value => {
+  //       tempVal =  value;
+  //       console.log(value);
+  //     });
+  //     return tempVal;
+  // }
+
+  changeData(obj){
+    this.urlParams = {...this.urlParams, ...obj};
+    this.transferCity.next(obj);
+    console.log(this.urlParams);
+  }
 
   setData(obj){
     // console.log(obj);
@@ -26,7 +47,9 @@ export class TransferService {
 
   transferData (arr){
 
-    this.transferArray.next(arr);
+    const arr2 = arr.map( item => item );
+    this.transferArray.next(arr2);
+
   }
 
 
