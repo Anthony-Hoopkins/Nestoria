@@ -1,20 +1,80 @@
-<section>
+<form [formGroup]="filterForm" novalidate (ngSubmit)="submit()" class="filter-form" >
 
-  <!--<div class="filtercontrols-row sweach-type">-->
-    <!--<div class="to-rent-type">For Rent</div>-->
-    <!--<div class="to-sale-type">For Sale</div>-->
-  <!--</div>-->
-  <!--<div class="filtercontrols-row sort-by">-->
-    <!--<div class="sort-by-title">Sort:</div>-->
-    <!--<select name="sort-select" id="">-->
-      <!--<option value="nestoria_rank" selected> Nestoria Rank </option>-->
-      <!--<option value="price_h_l"> Price (high to low) </option>-->
-      <!--<option value="price_l_h"> Price (low to high) </option>-->
-    <!--</select>-->
-  <!--</div>-->
-  <!--<div class="filtercontrols-row beds-toggle"></div>-->
-  <!--<div class="filtercontrols-row price-toggle"></div>-->
+  <div class="filter-row switch-type">
 
-</section>
+    <div class="btn-wrapper">
+
+      <input formControlName="switch" id="switch-sale" class="hidden" type="radio" value="buy" name="switch">
+      <label class="filter-btn sale-btn" for="switch-sale">For Sale</label>
+
+      <input formControlName="switch" id="switch-rent" class="hidden" type="radio" value="rent" name="switch">
+      <label class="filter-btn rent-btn" for="switch-rent">To Rent</label>
+
+    </div>
+
+  </div>
 
 
+  <h4 class="row-title"> Bedrooms </h4>
+  <div class="filter-row beds-toggle">
+
+    <div class="btn-wrapper">
+
+      <input formControlName="b0" id="beds-studio" class="hidden" type="checkbox" value="0" name="beds">
+        <label class="filter-btn beds-st" for="beds-studio">Studio</label>
+      <input formControlName="b1" id="beds-1" class="hidden" type="checkbox" value="1" name="beds">
+        <label class="filter-btn beds-1" for="beds-1">1</label>
+      <input formControlName="b2" id="beds-2" class="hidden" type="checkbox" value="2" name="beds">
+        <label class="filter-btn beds-2" for="beds-2">2</label>
+      <input formControlName="b3" id="beds-3" class="hidden" type="checkbox" value="3" name="beds">
+        <label class="filter-btn beds-3" for="beds-3">3</label>
+      <input formControlName="b4" id="beds-4" class="hidden" type="checkbox" value="4" name="beds">
+        <label class="filter-btn beds-4" for="beds-4">4+</label>
+
+    </div>
+
+  </div>
+
+
+  <h4 class="row-title"> Price </h4>
+  <div class="price-toggle ">
+
+    <div class="price-min-wrapper">
+      <label class="price-label" for="min-price"> Min. </label> <input formControlName="minPrice" id="min-price" class="min-price" type="number" name="min-price" min="0">
+    </div>
+
+    <div class="price-max-wrapper">
+      <label class="price-label" for="max-price"> Max. </label> <input formControlName="maxPrice"  id="max-price" class="max-price" type="number" name="max-price" >
+    </div>
+
+  </div>
+
+
+  <h4 class="row-title">  Property type </h4>
+  <div class="filter-row property-type">
+
+    <div class="btn-wrapper">
+
+      <input formControlName="property" id="property-all" class="hidden" type="radio" value="all" name="property">
+      <label class="filter-btn" for="property-all">All</label>
+      <input formControlName="property" id="property-flat" class="hidden" type="radio" value="flat" name="property">
+      <label class="filter-btn flat-btn" for="property-flat">Flat</label>
+      <input formControlName="property" id="property-house" class="hidden" type="radio" value="house" name="property">
+      <label class="filter-btn" for="property-house">House</label>
+
+    </div>
+
+  </div>
+
+  <button class="btnn"  [disabled]="filterForm.invalid"  >   </button>
+
+</form>
+
+<!--<div class="filtercontrols-row sort-by">-->
+<!--<div class="sort-by-title">Sort:</div>-->
+<!--<select name="sort-select" id="">-->
+<!--<option value="nestoria_rank" selected> Nestoria Rank </option>-->
+<!--<option value="price_h_l"> Price (high to low) </option>-->
+<!--<option value="price_l_h"> Price (low to high) </option>-->
+<!--</select>-->
+<!--</div>-->

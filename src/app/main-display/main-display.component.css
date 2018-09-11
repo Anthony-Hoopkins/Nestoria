@@ -1,3 +1,17 @@
+.main-display{
+  display: flex;
+}
+
+.sidebar{
+  width: 20%;
+}
+
+.display{
+  width: 75%;
+  padding: 15px;
+  min-height: 800px;
+}
+
 .flat-card{
   width: 95%;
   display: flex;

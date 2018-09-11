@@ -40,9 +40,9 @@ export class AppComponent implements OnInit {
   }
 
   navQueryApp(link){
-    this.router.navigate(['/buy',1], {
+    this.router.navigate(['/buy',1]/*, {
       queryParams: {'city': this.tempVal }
-    });
+    }*/);
   }
 
   submit() {

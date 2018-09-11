@@ -51,28 +51,33 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .filters-alert, .list-map{
-  width: 20%;
+  width: 30%;
+}
+
+.filters-bnt{
+  margin-left: 25%;
 }
 
 .search-string{
-  width: 60%;
+  width: 55%;
 }
 
 main{
   display: flex;
 }
 
-.sidebar{
-  width: 15%;
-}
+/*.sidebar{*/
+  /*width: 20%;*/
+/*}*/
 
 .main-display{
-  width: 70%;
+  width: 95%;
   padding: 15px;
+  min-height: 800px;
 }
 
 .right-aside{
-  width: 10%;
+  width: 5%;
 }
 
 .btnn{

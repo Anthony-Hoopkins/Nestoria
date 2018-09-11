@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
 import {Subject} from "rxjs/internal/Subject";
 import {UrlParams} from "./url-params";
+import {Validators} from "@angular/forms";
 
 @Injectable()
 export class TransferService {
 
-  urlParams: UrlParams = {
+  urlParams/*: UrlParams*/ = {
     numberPage: 1,
-    city: 'durham'
+    city: 'durham',
+    listing_type: 'sale',
+    minPrice: 0,
+    maxPrice: 999999999,
+    property: 'all',
+    minRoom: 0,
+    maxRoom: 999,
   };
 
   subjectParams = new Subject();
@@ -16,16 +23,7 @@ export class TransferService {
 
 
   transferArray = new Subject();
-  dataFromHomePage = new Subject();
-
-  // getCityFromHome(){
-  //     let tempVal;
-  //      this.dataFromHomePage.subscribe(value => {
-  //       tempVal =  value;
-  //       console.log(value);
-  //     });
-  //     return tempVal;
-  // }
+  // dataFromHomePage = new Subject();
 
   changeData(obj){
     this.urlParams = {...this.urlParams, ...obj};
@@ -34,15 +32,11 @@ export class TransferService {
   }
 
   setData(obj){
-    // console.log(obj);
-    // console.log(obj.city);
-    // if (obj.city !== undefined && this.urlParams.city !== obj.city){
+
       this.urlParams.numberPage = obj.numberPage ? obj.numberPage : 1;
       this.urlParams = {...this.urlParams, ...obj};
       this.subjectParams.next(this.urlParams);
-    //   return;
-    // }
-    // console.log('CСовпадение!!!');
+
   }
 
   transferData (arr){
@@ -52,25 +46,6 @@ export class TransferService {
 
   }
 
-
-
-  // setData(cityName: string){
-  //
-  //   if (this.urlParams.city !== cityName){
-  //     this.urlParams.numberPage = 1;
-  //     this.urlParams.city = cityName;
-  //     this.subjectParams.next(this.urlParams);
-  //     return;
-  //   }
-  //   console.log('CСовпадение!!!');
-  // }
-  //
-  // setNumPage(numPage: number){
-  //
-  //   this.urlParams.numberPage = numPage;
-  //   this.subjectParams.next(this.urlParams);
-  //
-  // }
 
   // mySub = this.mySubject.subscribe(x => console.log(`${x} ${x}`));
   // mySub2 = this.mySubject.subscribe(x => console.log('asfgsdfg  ' + x));
@@ -85,7 +60,7 @@ export class TransferService {
 
   }
 
-  setPagArr(num: number){
+  setPagArr(num: number, total_pages:number){
     const arr = [];
     if (num >= 1 && num <=6){
       for (let i = 1 ; i < num; i++ ){

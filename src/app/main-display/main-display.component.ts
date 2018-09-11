@@ -25,16 +25,17 @@ export class MainDisplayComponent implements OnInit, AfterViewInit, OnDestroy, D
   itemsFlat;
   private subscription: Subscription;
   private querySubscription: Subscription;
+  private subscription2: Subscription;
 
-  id: number  = 1;
+  id: number = 1;
   spinnerOnOff;
 
   trueResponse = true;
-  loadingVar:boolean = true ;
+  loadingVar: boolean = true;
 
   constructor(private router: Router, private activateRoute: ActivatedRoute, private  searchService: SearchService, private transferService: TransferService) {
 
-    this.startParams.city =  localStorage.getItem('cityName') || '';
+    this.startParams.city = localStorage.getItem('cityName') || '';
 
     this.querySubscription = activateRoute.queryParams.subscribe((queryParam: any) => {
         if (queryParam['city']) {
@@ -50,12 +51,12 @@ export class MainDisplayComponent implements OnInit, AfterViewInit, OnDestroy, D
 
   ngOnInit() {
 
-    this.subscription = this.transferService.spinnerOnOff.subscribe(val =>  {
+    this.subscription = this.transferService.spinnerOnOff.subscribe(val => {
       this.spinnerOnOff = val;
       console.log(val);
     });
 
-    this.transferService.subjectParams.subscribe(params => {
+    this.subscription2 = this.transferService.subjectParams.subscribe(params => {
 
       this.setParams(params);
 
@@ -67,53 +68,42 @@ export class MainDisplayComponent implements OnInit, AfterViewInit, OnDestroy, D
 
   }
 
-  setParams(params){
+  setParams(params) {
     this.searchService.sendReqFromSubject(params).subscribe(data => {
-      if (data.length){
-        // this.trueResponse = true;
-        // this.starActiveIndicator = [];
+      if (data.length) {
+        this.trueResponse = true;
         this.itemsFlat = data;
-
-        // console.log('searchService.sendReqFromSubject(params).subscribe - finish ');
         this.transferService.spinnerOnOff.next(true);
-
-        // console.log(data);
-        // this.transferService.transferData(data);
-        // data.forEach((item, i) => {
-        //   this.favoriteArr.forEach(prop =>{
-        //     if (item.lister_url === prop.lister_url){
-        //       // console.log('Какое совпадение');
-        //       this.itemsFlat[i].starActiveIndicator = true;
-        //     }
-        //   })
-        // });
-        // console.log(this.itemsFlat);
-      } else{
-        // this.trueResponse = false;
+      } else {
+        this.trueResponse = false;
         console.log("No Array");
       }
     });
   }
 
 
-  ngDoCheck(){
+  ngDoCheck() {
     // console.log('ngDoCheck');
     // this.loadingVar = this.loadingVar2;
   }
 
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     console.log('ngAfterViewInit');
     // this.loadingVar2 = true;
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     // this.transferService.subjectParams.unsubscribe();
     // this.searchService.sendReqFromSubject(params).unsubscribe();
     console.log('On-------------------------------------------------Destroy');
     this.subscription.unsubscribe();
     this.querySubscription.unsubscribe();
+    this.subscription2.unsubscribe();
   }
+
+}
+
 
 
 //
@@ -229,7 +219,7 @@ export class MainDisplayComponent implements OnInit, AfterViewInit, OnDestroy, D
 //
 //   }
 //
-}
+
 
 
 // @Input() itemsFlat: any;

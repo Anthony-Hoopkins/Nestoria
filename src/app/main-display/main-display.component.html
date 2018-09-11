@@ -1,28 +1,50 @@
-<div *ngIf="!spinnerOnOff; else loading">
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <div class="overlay-loader">
-    <div class="loader">
-      <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div>
+<div class="main-display">
+
+  <aside class="sidebar">
+
+    <app-sidebar></app-sidebar>
+
+  </aside>
+
+  <section class="display" *ngIf="trueResponse; else not_found">
+
+    <div *ngIf="!spinnerOnOff; else loading">
+
+      <br>
+      <br>
+      <br>
+
+      <br>
+      <br>
+
+      <div class="overlay-loader">
+        <div class="loader">
+          <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div>
+        </div>
+      </div>
+
     </div>
-  </div>
+
+    <ng-template #loading>
+
+      <pagination-app> </pagination-app>
+
+      <flat-item-app *ngFor="let item of itemsFlat, let index = index"  [item]="item" [index]="index" > </flat-item-app>
+
+      <pagination-app> </pagination-app>
+
+    </ng-template>
+
+  </section>
+
+  <ng-template #not_found class="not-found">
+
+    <h1> Drat! We can't find any properties</h1>
+    <p> We will inform you as soon as we have new properties with these features </p>
+
+  </ng-template>
 
 </div>
-
-<ng-template #loading>
-
-  <pagination-app> </pagination-app>
-
-  <flat-item-app *ngFor="let item of itemsFlat, let index = index"  [item]="item" [index]="index" > </flat-item-app>
-
-  <pagination-app> </pagination-app>
-
-
-</ng-template>
-
 
 <!--
 
