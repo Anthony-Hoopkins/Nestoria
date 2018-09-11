@@ -1,8 +1,8 @@
 # Nestoria
 
-## Attention
+## Attention !!!
 
-for correct work app - to install extention  "Moesif Origin & CORS Changer" on your browser
+!!! for correct work app - to install extention  "Moesif Origin & CORS Changer" on your browser
 
 ## Other
 
