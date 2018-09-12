@@ -60,21 +60,33 @@ export class TransferService {
 
   }
 
-  setPagArr(num: number, total_pages:number){
+  setPagArr(num: number, total:number){
     const arr = [];
-    if (num >= 1 && num <=6){
-      for (let i = 1 ; i < num; i++ ){
-        arr.push(i);
+    if (total > 6) {
+      if (num >= 1 && num <= 6) {
+        // for (let i = 1; i < num; i++) {
+        //   arr.push(i);
+        // }
+        for (let i = 1; i <= (num + 5 > total ? total : num + 5) ; i++) {
+          arr.push(i);
+        }
+      } else if (num > 6 && num + 5 < total) {
+        let x = num - 5;
+        let max = num +5 < total ? num +5 : total;
+        for (let i = x; i <= max; i++) {
+          arr.push(i);
+        }
+      } else {
+        for (let i = num - 5; i <= total; i++) {
+          arr.push(i);
+        }
       }
-      for (let i = num ; i <= num+5 ; i++){
-        arr.push(i);
-      }
-    }else if (num > 6){
-      let x = num-5;
-      for (let i = x ; i <= num+5; i++ ){
+    }else {
+      for (let i =  1; i <= total; i++) {
         arr.push(i);
       }
     }
+    console.log(arr);
     return arr;
   }
 

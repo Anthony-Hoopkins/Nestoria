@@ -1,32 +1,35 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import {TransferService} from "../transfer.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SearchService} from "../search.service";
+import {Subscription} from "rxjs/internal/Subscription";
 
 @Component({
   selector: 'pagination-app',
   templateUrl: 'pagination.component.html',
   styleUrls: ['pagination.component.css']
 })
-export class PaginationComponent implements OnInit{
+export class PaginationComponent implements OnInit, OnDestroy{
   pagArr: number[] = [1,2,3,4,5,6];
+
+  private subscription: Subscription;
+  private subscription2: Subscription;
 
   constructor(private transferService: TransferService, private router: Router, private activateRoute: ActivatedRoute, private  searchService: SearchService){}
 
   ngOnInit(){
 
-    this.transferService.subjectParams.subscribe(params => {
+    this.subscription2 = this.transferService.subjectParams.subscribe(params => {
 
       this.router.navigate([`/buy/${params['numberPage']}`]);
 
-      this.setArr(params, 5);
+      // this.setArr(params, 5);
 
     });
 
-    // this.searchService.subjectAllPage.subscribe(go => {
-    //   this.setArr(5, go);
-    //
-    // });
+    this.subscription = this.searchService.subjectAllPage.subscribe(go => {
+      this.setArr(go['page'], go['total']);
+    });
 
   }
 
@@ -39,7 +42,14 @@ export class PaginationComponent implements OnInit{
 
   setArr(params, go){
 
-    this.pagArr = this.transferService.setPagArr(params.numberPage, go);
+    this.pagArr = this.transferService.setPagArr(params, go);
     console.log(params +' sfagsadfg  '+go);
+  }
+
+  ngOnDestroy(){
+
+    this.subscription.unsubscribe();
+    this.subscription2.unsubscribe();
+
   }
 }
