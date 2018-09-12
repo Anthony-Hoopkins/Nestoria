@@ -22,7 +22,4 @@ export class FavoriteDisplayComponent implements OnInit{
 
   }
 
-
-
-
 }
