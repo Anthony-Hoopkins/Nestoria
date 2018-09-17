@@ -25,7 +25,6 @@ export class TransferService {
 
     this.urlParams = {...this.urlParams, ...obj};
     this.transferCity.next(obj);
-    console.log(this.urlParams);
 
   }
 
@@ -68,24 +67,7 @@ export class TransferService {
         arr.push(i);
       }
     }
-    console.log(arr);
     return arr;
   }
 
 }
-
-
-
-
-// mySub = this.mySubject.subscribe(x => console.log(`${x} ${x}`));
-// mySub2 = this.mySubject.subscribe(x => console.log('asfgsdfg  ' + x));
-
-// getDataCity(){
-//
-//   // console.log(this.city);
-//   // this.subjectParams.subscribe(x => console.log(`subjectParams: ${x} ${x}`));
-//   // return this.subjectParams.subscribe(x => console.log(`subjectParams: ${x} ${x}`));
-//   // return this.city;
-//   // this.searchService.
-//
-// }

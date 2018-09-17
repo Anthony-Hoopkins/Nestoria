@@ -18,7 +18,6 @@ export class FavoriteDisplayComponent implements OnInit{
 
     this.favoriteArr = JSON.parse(localStorage.getItem('favoriteStorage')) || [];
     this.itemsFlat = this.favoriteArr;
-    console.log(this.favoriteArr);
 
   }
 

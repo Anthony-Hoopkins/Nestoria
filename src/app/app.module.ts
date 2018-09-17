@@ -6,7 +6,6 @@ import {RouterModule, Routes} from "@angular/router";
 
 import { AppComponent } from './app.component';
 import {SidebarComponent} from "./sidebar/sidebar.component";
-import {Counter1Component} from "./counter1/counter1.component";
 import {MainDisplayComponent} from "./main-display/main-display.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
 import {AboutComponent} from "./about/about.component";
@@ -22,11 +21,11 @@ import {HeaderPanelComponent} from "./header-panel/header-panel.component";
 // определение маршрутов
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
-  { path: 'about', component: AboutComponent},
+  // { path: 'about', component: AboutComponent},
   { path: 'home',  redirectTo: '/'},
-  { path: 'contact',  redirectTo: '/about'},
-  { path: 'item/:id', component: ItemComponent},
-  { path: 'page/:id', component: ItemComponent},
+  // { path: 'contact',  redirectTo: '/about'},
+  // { path: 'item/:id', component: ItemComponent},
+  // { path: 'page/:id', component: ItemComponent},
   { path: 'buy/:id', component: MainDisplayComponent},
   { path: 'favorite', component: FavoriteDisplayComponent},
   { path: 'buy', redirectTo: '/buy/'},
@@ -36,7 +35,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent, SidebarComponent, Counter1Component, MainDisplayComponent, HomeComponent, AboutComponent, NotFoundComponent,
+    AppComponent, SidebarComponent, MainDisplayComponent, HomeComponent, AboutComponent, NotFoundComponent,
     ItemComponent, PaginationComponent, FavoriteDisplayComponent, FlatsListComponent, FlatItemComponent, HeaderPanelComponent
   ],
   imports: [

@@ -37,8 +37,7 @@ export class SidebarComponent implements OnInit{
   }
 
   submit(){
-    console.log(this.filterForm.controls['switch'].value);
-    console.log('Submit');
+
   }
 
   onValueChange(data){
@@ -56,7 +55,6 @@ export class SidebarComponent implements OnInit{
         data.b3 ?  3: '',
         data.b4 ?  4: '']
     });
-    console.log();
   }
 
 }

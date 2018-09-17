@@ -13,5 +13,6 @@ export class ItemComponent {
   constructor(private activateRoute: ActivatedRoute){
 
     this.subscription = activateRoute.params.subscribe(params=>this.id=params['id']);
+
   }
 }

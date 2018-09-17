@@ -34,14 +34,13 @@ export class PaginationComponent implements OnInit, OnDestroy{
   goPagination(num){
 
     this.transferService.setData({numberPage: num});
-    console.log(num);
 
   }
 
   setArr(params, go){
 
     this.pagArr = this.transferService.setPagArr(params, go);
-    console.log(params +' sfagsadfg  '+go);
+
   }
 
   ngOnDestroy(){

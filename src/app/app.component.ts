@@ -30,7 +30,6 @@ export class AppComponent implements OnInit {
 
     this.transferService.transferCity.subscribe(val => {
       this.tempVal = val['city'];
-      console.log(this.tempVal);
     });
 
     this.searchForm = this.formBuilder.group({
@@ -51,16 +50,5 @@ export class AppComponent implements OnInit {
     localStorage.setItem('cityName', this.searchForm.controls['searchString'].value);
 
   }
-
-  //-----
-
-  // goMet() {
-  //   this.router.navigate(['/about']);
-  // }
-  //
-  // addItem() {
-  //   this.searchService.addData(this.searchForm.controls['searchString'].value, 2200);
-  // }
-
 
 }
