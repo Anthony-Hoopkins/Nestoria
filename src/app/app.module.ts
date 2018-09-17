@@ -13,9 +13,9 @@ import {HomeComponent} from "./home/home.component";
 import {ItemComponent} from "./item/item.component";
 import {PaginationComponent} from "./pagination/pagination.component";
 import {FavoriteDisplayComponent} from "./favorite-display/favorite-display.component";
-import {FlatsListComponent} from "./flats-list/flats-list.component";
+import {FlatsListComponent} from "../assets/backet/flats-list/flats-list.component";
 import {FlatItemComponent} from "./flat-item/flat-item.component";
-import {HeaderPanelComponent} from "./header-panel/header-panel.component";
+import {HeaderPanelComponent} from "../assets/backet/header-panel/header-panel.component";
 
 
 // определение маршрутов

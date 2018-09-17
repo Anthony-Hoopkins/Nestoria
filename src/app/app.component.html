@@ -19,8 +19,8 @@
       <span class="search-icon"></span>
 
       <form class="search-form" [formGroup]="searchForm" novalidate (ngSubmit)="submit()">
-        <input formControlName="searchString" class="search-string-input" type="text" placeholder="Enter City" value="{{tempVal}}" > <!--(change)="drawLine()"-->
-        <button class="btnn"  [disabled]="searchForm.invalid" [routerLink]="['buy']"> GO </button>
+        <input formControlName="searchString" class="search-string-input" type="text" placeholder="Enter City"  > <!--(change)="drawLine()"-->
+        <button class="btnn"  [disabled]="searchForm.invalid" [routerLink]="['buy']">   </button>
       </form>
 
       <span class="search-mask__label"> | Change</span>

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import {Subject} from "rxjs/internal/Subject";
 import {UrlParams} from "./url-params";
+import {InterfaceCity} from "./interface-city";
 
 @Injectable()
 export class TransferService {
 
-  urlParams: UrlParams = {
+  urlParams:UrlParams = {
     numberPage: 1,
     city: 'durham',
     listing_type: 'sale',
@@ -16,30 +17,21 @@ export class TransferService {
     maxRoom: 999,
   };
 
-  subjectParams = new Subject();
-  spinnerOnOff = new Subject();
-  transferCity = new Subject();
-  transferArray = new Subject();
+  subjectParams = new Subject<UrlParams>();
+  spinnerOnOff = new Subject<boolean>();
 
-  changeData(obj){
+  changeCity(newParams:InterfaceCity){
 
-    this.urlParams = {...this.urlParams, ...obj};
-    this.transferCity.next(obj);
-
-  }
-
-  setData(obj){
-
-    this.urlParams.numberPage = obj.numberPage ? obj.numberPage : 1;
-    this.urlParams = {...this.urlParams, ...obj};
+    this.urlParams = {...this.urlParams, ...newParams};
     this.subjectParams.next(this.urlParams);
 
   }
 
-  transferData (arr){
+  setData(obj:UrlParams){
 
-    const arr2 = arr.map( item => item );
-    this.transferArray.next(arr2);
+    this.urlParams = {...this.urlParams, ...obj};
+    this.urlParams.numberPage = obj.numberPage ? obj.numberPage : 1;
+    this.subjectParams.next(this.urlParams);
 
   }
 

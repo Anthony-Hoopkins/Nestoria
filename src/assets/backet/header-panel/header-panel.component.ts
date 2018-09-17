@@ -1,8 +1,8 @@
 import {Component} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {TransferService} from "../transfer.service";
-import {SearchService} from "../search.service";
+import {TransferService} from "../../../app/transfer.service";
+import {SearchService} from "../../../app/search.service";
 import {Subscription} from "rxjs/internal/Subscription";
 
 @Component({

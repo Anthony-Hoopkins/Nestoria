@@ -59,6 +59,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .search-string{
+  padding: 10px;
   width: 55%;
 }
 
@@ -66,9 +67,6 @@ main{
   display: flex;
 }
 
-/*.sidebar{*/
-  /*width: 20%;*/
-/*}*/
 
 .main-display{
   width: 95%;
@@ -81,7 +79,20 @@ main{
 }
 
 .btnn{
+  vertical-align: middle;
+  background-image: url(/src/assets/img/nsti_v1_opt.png);
+  background-position: -7px 108px;
+  margin-top: -1px;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
+  width: 36px;
+  height: 38px;
+  box-shadow: none;
+}
+
+.btnn:hover{
+  background-position: -7px 148px;
 }
 
 .sidebar-title{
@@ -95,28 +106,3 @@ main{
   background-size: cover;
   margin: 0 auto;
 }
-
-/*.active {*/
-  /*color: #fff;*/
-  /*background-color: #f6bb42;*/
-/*}*/
-
-
-/*.pagination-panel{*/
-  /*text-align: center;*/
-  /*margin: 10px;*/
-/*}*/
-
-/*.pagination-btn{*/
-  /*padding: 7px;*/
-  /*display: inline-block;*/
-  /*cursor: pointer;*/
-  /*border: solid lightgrey 1px;*/
-  /*width: 20px;*/
-  /*text-decoration: none;*/
-/*}*/
-
-/*.pagination-btn:hover{*/
-  /*background-color: gainsboro;*/
-  /*color: orange;*/
-/*}*/

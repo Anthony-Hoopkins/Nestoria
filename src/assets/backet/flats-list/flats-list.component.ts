@@ -2,9 +2,9 @@ import {Component, DoCheck, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs/internal/Subscription";
 
-import {SearchService} from "../search.service";
-import {TransferService} from "../transfer.service";
-import {UrlParams} from "../url-params";
+import {SearchService} from "../../../app/search.service";
+import {TransferService} from "../../../app/transfer.service";
+import {UrlParams} from "../../../app/url-params";
 
 const favoriteStorage = 'favoriteStorage';
 
@@ -53,15 +53,15 @@ export class FlatsListComponent implements OnInit, DoCheck {
 
   ngOnInit() {
 
-    this.transferService.transferArray.subscribe(arr => {
-
-      console.log('this.-----transferService.transf_erArray.subscribe');
-      console.log(this.itemsFlat);
-      this.itemsFlat = arr;
-      // this.itemsFlat = arr.map( item => item );
-      console.log(this.itemsFlat);
-
-    });
+    // this.transferService.transferArray.subscribe(arr => {
+    //
+    //   console.log('this.-----transferService.transf_erArray.subscribe');
+    //   console.log(this.itemsFlat);
+    //   this.itemsFlat = arr;
+    //   // this.itemsFlat = arr.map( item => item );
+    //   console.log(this.itemsFlat);
+    //
+    // });
 
     // this.subscription = this.activateRoute.params.subscribe(params=>{this.id = params['id']});
 

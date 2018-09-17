@@ -39,14 +39,13 @@ export class HomeComponent implements OnInit, OnDestroy{
 
   }
 
-  navQuery(item){
+  navQuery(item: string){
     this.router.navigate(['buy', 1], {
       queryParams: {'city': item }
       });
   }
 
   ngOnDestroy(){
-    // this.transferService.transferHomeOrNot.next({val:true});
   }
 
 }

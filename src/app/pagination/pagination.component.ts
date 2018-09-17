@@ -3,6 +3,7 @@ import {TransferService} from "../transfer.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SearchService} from "../search.service";
 import {Subscription} from "rxjs/internal/Subscription";
+import {InterfacePageCount} from "../interface-page-count";
 
 @Component({
   selector: 'pagination-app',
@@ -25,19 +26,21 @@ export class PaginationComponent implements OnInit, OnDestroy{
 
     });
 
-    this.subscription = this.searchService.subjectAllPage.subscribe(go => {
-      this.setArr(go['page'], go['total']);
+    this.subscription = this.searchService.subjectAllPage.subscribe((pageCount:InterfacePageCount) => {
+
+      this.setArr(pageCount.page, pageCount.total);
+
     });
 
   }
 
-  goPagination(num){
+  goPagination(num: number){
 
     this.transferService.setData({numberPage: num});
 
   }
 
-  setArr(params, go){
+  setArr(params:number, go:number){
 
     this.pagArr = this.transferService.setPagArr(params, go);
 

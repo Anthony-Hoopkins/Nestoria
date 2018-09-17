@@ -1,10 +1,11 @@
-import {OnInit, Component} from '@angular/core';
+import {OnInit, Component, OnDestroy} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs/internal/Subscription";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 import {SearchService} from "./search.service";
 import {TransferService} from "./transfer.service";
+import {UrlParams} from "./url-params";
 
 @Component({
   selector: 'app-root',
@@ -13,41 +14,44 @@ import {TransferService} from "./transfer.service";
                 './spinner.css'],
   providers: [SearchService, TransferService]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'MY_Nestoria';
-  id: number  = 1;
   searchForm: FormGroup;
-  tempVal;
-
-
-  private subscription: Subscription;
+  cityName: string;
+  subscription: Subscription;
 
   constructor(private transferService: TransferService, private  searchService: SearchService, private formBuilder: FormBuilder,
               private router: Router, private activateRoute: ActivatedRoute) {
   }
 
-  ngOnInit() {
+  ngOnInit(){
 
-    this.transferService.transferCity.subscribe(val => {
-      this.tempVal = val['city'];
+    this.subscription = this.transferService.subjectParams.subscribe((urlParam: UrlParams) => {
+      this.cityName = urlParam.city;
+      this.searchForm.get('searchString').setValue(this.cityName, {emitEvent:true});
     });
 
     this.searchForm = this.formBuilder.group({
-      'searchString': ['',  [Validators.required, Validators.minLength(3)]],
+      searchString: ['',  [Validators.required, Validators.minLength(3)]],
     });
 
   }
 
-  navQueryApp(link){
-    this.router.navigate(['/buy',1]/*, {
-      queryParams: {'city': this.tempVal }
-    }*/);
+  navQueryApp(){
+
+    this.router.navigate(['/buy',1]);
+
   }
 
-  submit() {
+  submit(){
 
     this.transferService.setData({city: this.searchForm.controls['searchString'].value});
-    localStorage.setItem('cityName', this.searchForm.controls['searchString'].value);
+
+  }
+
+  ngOnDestroy(){
+
+    this.subscription.unsubscribe();
 
   }
 

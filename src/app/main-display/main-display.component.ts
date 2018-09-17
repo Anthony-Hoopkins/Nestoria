@@ -5,6 +5,8 @@ import {Subscription} from "rxjs/internal/Subscription";
 import {SearchService} from "../search.service";
 import {TransferService} from "../transfer.service";
 import {UrlParams} from "../url-params";
+import {InterfaceItem} from "../interface-item";
+import {InterfaceCity} from "../interface-city";
 
 const favoriteStorage = 'favoriteStorage';
 
@@ -18,7 +20,6 @@ export class MainDisplayComponent implements OnInit, AfterViewInit, OnDestroy {
 
   startParams: UrlParams = {
     numberPage: 1,
-    city: 'Manchester',
     listing_type: 'sale',
     minPrice: 0,
     maxPrice: 999999999,
@@ -27,27 +28,25 @@ export class MainDisplayComponent implements OnInit, AfterViewInit, OnDestroy {
     maxRoom: 999,
   };
 
-  itemsFlat;
+  itemsFlat: InterfaceItem[];
+  spinnerOnOff: boolean;
+  trueResponse = true;
+  starArray: InterfaceItem;
   private subscription: Subscription;
   private querySubscription: Subscription;
   private subscription2: Subscription;
   private subscription3: Subscription;
 
-  id: number = 1;
-  spinnerOnOff;
-
-  trueResponse = true;
-  loadingVar: boolean = true;
-
   constructor(private router: Router, private activateRoute: ActivatedRoute, private  searchService: SearchService, private transferService: TransferService) {
 
-    this.startParams.city = localStorage.getItem('cityName') || '';
+    this.starArray = JSON.parse(localStorage.getItem(favoriteStorage)) || [];
 
-    this.querySubscription = activateRoute.queryParams./*takeUntil(this.destroy$).*/subscribe((queryParam: any) => {
-        if (queryParam['city']) {
-          this.startParams.city = queryParam['city'];
-          localStorage.setItem('cityName', this.startParams.city);
-          this.transferService.changeData({city: this.startParams.city});
+    this.startParams.city = this.transferService.urlParams.city || '';
+
+    this.querySubscription = activateRoute.queryParams.subscribe((queryParam: InterfaceCity) => {
+        if (queryParam.city) {
+          this.startParams.city = queryParam.city;
+          this.transferService.changeCity({city: this.startParams.city});
         }
       }
     );
@@ -56,11 +55,13 @@ export class MainDisplayComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
 
-    this.subscription = this.transferService.spinnerOnOff.subscribe(val => {
-      this.spinnerOnOff = val;
+    console.log(this.transferService.urlParams.city);
+
+    this.subscription = this.transferService.spinnerOnOff.subscribe((spinnerVal: boolean) => {
+      this.spinnerOnOff = spinnerVal;
     });
 
-    this.subscription2 = this.transferService.subjectParams.subscribe(params => {
+    this.subscription2 = this.transferService.subjectParams.subscribe((params: UrlParams) => {
       this.setParams(params);
     });
 
@@ -68,8 +69,8 @@ export class MainDisplayComponent implements OnInit, AfterViewInit, OnDestroy {
 
   }
 
-  setParams(params) {
-    this.subscription3 = this.searchService.sendReqFromSubject(params).subscribe(data => {
+  setParams(params: UrlParams) {
+    this.subscription3 = this.searchService.sendReqFromSubject(params).subscribe((data: InterfaceItem[])=> {
       if (data.length) {
         this.trueResponse = true;
         this.itemsFlat = data;

@@ -2,18 +2,19 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {catchError, map} from "rxjs/operators";
 import {Subject} from "rxjs/internal/Subject";
+import {UrlParams} from "./url-params";
+import {InterfacePageCount} from "./interface-page-count";
 
 @Injectable()
 export class SearchService {
 
-  subjectAllPage = new Subject();
+  subjectAllPage = new Subject<InterfacePageCount>();
 
   constructor(private http: HttpClient){ }
 
   total_pages = 0;
 
-  sendReqFromSubject(obj){
-
+  sendReqFromSubject(obj:UrlParams){
     let url = `https://api.nestoria.co.uk/api?encoding=json&room_min=${obj.minRoom}&room_max=${obj.maxRoom}&price_min=${obj.minPrice}
 &price_max=${obj.maxPrice}&pretty=1&property_type=${obj.property}&listing_type=${obj.listing_type}&place_name=${obj.city}
 &number_of_results=5&page=${obj.numberPage}&action=search_listings&country=uk`;
