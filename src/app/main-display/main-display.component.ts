@@ -1,11 +1,10 @@
-import {AfterViewInit, Component, DoCheck, OnDestroy, OnInit} from "@angular/core";
+import {AfterViewInit, Component, OnDestroy, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs/internal/Subscription";
 
 import {SearchService} from "../search.service";
 import {TransferService} from "../transfer.service";
-import {UrlParams} from "../url-params";
-
+import {StartParams} from "../start-params";
 
 const favoriteStorage = 'favoriteStorage';
 
@@ -15,9 +14,9 @@ const favoriteStorage = 'favoriteStorage';
   styleUrls: ['./main-display.component.css',
     '../spinner.css']
 })
-export class MainDisplayComponent implements OnInit, AfterViewInit, OnDestroy, DoCheck {
+export class MainDisplayComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  startParams: UrlParams = {
+  startParams: StartParams = {
     numberPage: 1,
     city: 'Manchester'
   };
@@ -26,6 +25,7 @@ export class MainDisplayComponent implements OnInit, AfterViewInit, OnDestroy, D
   private subscription: Subscription;
   private querySubscription: Subscription;
   private subscription2: Subscription;
+  private subscription3: Subscription;
 
   id: number = 1;
   spinnerOnOff;
@@ -37,7 +37,7 @@ export class MainDisplayComponent implements OnInit, AfterViewInit, OnDestroy, D
 
     this.startParams.city = localStorage.getItem('cityName') || '';
 
-    this.querySubscription = activateRoute.queryParams.subscribe((queryParam: any) => {
+    this.querySubscription = activateRoute.queryParams./*takeUntil(this.destroy$).*/subscribe((queryParam: any) => {
         if (queryParam['city']) {
           this.startParams.city = queryParam['city'];
           localStorage.setItem('cityName', this.startParams.city);
@@ -69,7 +69,7 @@ export class MainDisplayComponent implements OnInit, AfterViewInit, OnDestroy, D
   }
 
   setParams(params) {
-    this.searchService.sendReqFromSubject(params).subscribe(data => {
+    this.subscription3 = this.searchService.sendReqFromSubject(params).subscribe(data => {
       if (data.length) {
         this.trueResponse = true;
         this.itemsFlat = data;
@@ -81,28 +81,24 @@ export class MainDisplayComponent implements OnInit, AfterViewInit, OnDestroy, D
     });
   }
 
-
-  ngDoCheck() {
-    // console.log('ngDoCheck');
-    // this.loadingVar = this.loadingVar2;
-  }
-
-
   ngAfterViewInit() {
     console.log('ngAfterViewInit');
-    // this.loadingVar2 = true;
   }
 
   ngOnDestroy() {
-    // this.transferService.subjectParams.unsubscribe();
-    // this.searchService.sendReqFromSubject(params).unsubscribe();
     console.log('On-------------------------------------------------Destroy');
     this.subscription.unsubscribe();
     this.querySubscription.unsubscribe();
     this.subscription2.unsubscribe();
+    this.subscription3.unsubscribe();
   }
 
 }
+
+
+
+
+
 
 
 

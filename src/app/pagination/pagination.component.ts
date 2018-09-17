@@ -23,8 +23,6 @@ export class PaginationComponent implements OnInit, OnDestroy{
 
       this.router.navigate([`/buy/${params['numberPage']}`]);
 
-      // this.setArr(params, 5);
-
     });
 
     this.subscription = this.searchService.subjectAllPage.subscribe(go => {

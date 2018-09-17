@@ -30,11 +30,6 @@ export class SearchService {
       } else {
         return []
       }
-      // ,
-      // catchError(err => {
-      //   console.log(err);
-      //   return throwError(err);
-      // });
     }));
   }
 
