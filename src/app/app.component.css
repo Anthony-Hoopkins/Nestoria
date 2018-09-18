@@ -80,7 +80,7 @@ main{
 
 .btnn{
   vertical-align: middle;
-  background-image: url(/src/assets/img/nsti_v1_opt.png);
+  background-image: url(/../assets/img/nsti_v1_opt.png);
   background-position: -7px 108px;
   margin-top: -1px;
   border: none;
@@ -102,7 +102,7 @@ main{
 .fav-btn-img{
   height: 21px;
   width: 23px;
-  background: url('/src/assets/img/favor_hov.png');
+  background: url('/../assets/img/favor_hov.png');
   background-size: cover;
   margin: 0 auto;
 }

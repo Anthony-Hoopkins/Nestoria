@@ -54,11 +54,11 @@
   font-size: 1.1em;
   font-weight: 500;
 }
-
+/*/src/assets/img/favor_hov.png*/
 .description-star{
   height: 21px;
   width: 23px;
-  background: url('/src/assets/img/favor_hov.png');
+  background: url('../../assets/img/favor_hov.png');
   background-size: cover;
   margin-right: 20px;
   background-position: 22px 0;
